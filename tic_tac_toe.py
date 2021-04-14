@@ -1,8 +1,13 @@
 from tkinter import *
 from tkinter import messagebox
 
+GAME_TITLE = "Tic-Tac-Toe"
+MESSAGE_X_WINS = "Congratulations! X Wins"
+MESSAGE_O_WINS = "Congratulations! O Wins"
+MESSAGE_DRAW = "It's a DRAW!"
+
 root = Tk()
-root.title("Tic-Tac-Toe")
+root.title(GAME_TITLE)
 
 clicked = True
 count = 0
@@ -34,137 +39,70 @@ def make_buttons_red():
     b9.config(bg="red")
 
 
-def check_if_won():
+def make_buttons_green(button_one, button_two, button_three):
+    """Makes the buttons green when win"""
+    button_one.config(bg="green")
+    button_two.config(bg="green")
+    button_three.config(bg="green")
+
+
+def show_win_message(sign):
+    messagebox.showinfo(GAME_TITLE, MESSAGE_X_WINS if sign == "X" else MESSAGE_O_WINS)
+
+
+def check_if_won(sign):
+    """Check who wins the game"""
     global winner
     winner = False
-    """Check if X wins the game"""
 
     # Rows check
-    if b1["text"] == "X" and b2["text"] == "X" and b3["text"] == "X":
+    if b1["text"] == sign and b2["text"] == sign and b3["text"] == sign:
         winner = True
-        b1.config(bg="green")
-        b2.config(bg="green")
-        b3.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! X Wins")
+        make_buttons_green(b1, b2, b3)
+        show_win_message(sign)
         disable_all_buttons()
-    elif b4["text"] == "X" and b5["text"] == "X" and b6["text"] == "X":
+    elif b4["text"] == sign and b5["text"] == sign and b6["text"] == sign:
         winner = True
-        b4.config(bg="green")
-        b5.config(bg="green")
-        b6.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! X Wins")
+        make_buttons_green(b4, b5, b6)
+        show_win_message(sign)
         disable_all_buttons()
-    elif b7["text"] == "X" and b8["text"] == "X" and b9["text"] == "X":
+    elif b7["text"] == sign and b8["text"] == sign and b9["text"] == sign:
         winner = True
-        b7.config(bg="green")
-        b8.config(bg="green")
-        b9.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! X Wins")
+        make_buttons_green(b7, b8, b9)
+        show_win_message(sign)
         disable_all_buttons()
     # Columns check
-    elif b1["text"] == "X" and b4["text"] == "X" and b7["text"] == "X":
+    elif b1["text"] == sign and b4["text"] == sign and b7["text"] == sign:
         winner = True
-        b1.config(bg="green")
-        b4.config(bg="green")
-        b7.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! X Wins")
+        make_buttons_green(b1, b4, b7)
+        show_win_message(sign)
         disable_all_buttons()
-    elif b2["text"] == "X" and b5["text"] == "X" and b8["text"] == "X":
+    elif b2["text"] == sign and b5["text"] == sign and b8["text"] == sign:
         winner = True
-        b2.config(bg="green")
-        b5.config(bg="green")
-        b8.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! X Wins")
+        make_buttons_green(b2, b5, b8)
+        show_win_message(sign)
         disable_all_buttons()
-    elif b3["text"] == "X" and b6["text"] == "X" and b9["text"] == "X":
+    elif b3["text"] == sign and b6["text"] == sign and b9["text"] == sign:
         winner = True
-        b3.config(bg="green")
-        b6.config(bg="green")
-        b9.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! X Wins")
+        make_buttons_green(b3, b6, b9)
+        show_win_message(sign)
         disable_all_buttons()
     # Diagonals check
-    elif b1["text"] == "X" and b5["text"] == "X" and b9["text"] == "X":
+    elif b1["text"] == sign and b5["text"] == sign and b9["text"] == sign:
         winner = True
-        b1.config(bg="green")
-        b5.config(bg="green")
-        b9.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! X Wins")
+        make_buttons_green(b1, b5, b9)
+        show_win_message(sign)
         disable_all_buttons()
-    elif b3["text"] == "X" and b5["text"] == "X" and b7["text"] == "X":
+    elif b3["text"] == sign and b5["text"] == sign and b7["text"] == sign:
         winner = True
-        b3.config(bg="green")
-        b5.config(bg="green")
-        b7.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! X Wins")
-        disable_all_buttons()
-
-        """Check if O wins the game"""
-
-    # Rows check
-    elif b1["text"] == "O" and b2["text"] == "O" and b3["text"] == "O":
-        winner = True
-        b1.config(bg="green")
-        b2.config(bg="green")
-        b3.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! O Wins")
-        disable_all_buttons()
-    elif b4["text"] == "O" and b5["text"] == "O" and b6["text"] == "O":
-        winner = True
-        b4.config(bg="green")
-        b5.config(bg="green")
-        b6.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! O Wins")
-        disable_all_buttons()
-    elif b7["text"] == "O" and b8["text"] == "O" and b9["text"] == "O":
-        winner = True
-        b7.config(bg="green")
-        b8.config(bg="green")
-        b9.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! O Wins")
-        disable_all_buttons()
-    # Columns check
-    elif b1["text"] == "O" and b4["text"] == "O" and b7["text"] == "O":
-        winner = True
-        b1.config(bg="green")
-        b4.config(bg="green")
-        b7.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! O Wins")
-        disable_all_buttons()
-    elif b2["text"] == "O" and b5["text"] == "O" and b8["text"] == "O":
-        winner = True
-        b2.config(bg="green")
-        b5.config(bg="green")
-        b8.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! O Wins")
-        disable_all_buttons()
-    elif b3["text"] == "O" and b6["text"] == "O" and b9["text"] == "O":
-        winner = True
-        b3.config(bg="green")
-        b6.config(bg="green")
-        b9.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! O Wins")
-        disable_all_buttons()
-    # Diagonals check
-    elif b1["text"] == "O" and b5["text"] == "O" and b9["text"] == "O":
-        winner = True
-        b1.config(bg="green")
-        b5.config(bg="green")
-        b9.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! O Wins")
-        disable_all_buttons()
-    elif b3["text"] == "O" and b5["text"] == "O" and b7["text"] == "O":
-        winner = True
-        b3.config(bg="green")
-        b5.config(bg="green")
-        b7.config(bg="green")
-        messagebox.showinfo("Tic-Tac-Toe", "Congratulations! O Wins")
+        make_buttons_green(b3, b5, b7)
+        show_win_message(sign)
         disable_all_buttons()
 
     # Check if draw
     if count == 9 and winner is False:
         make_buttons_red()
-        messagebox.showinfo("Tic-Tac-Toe", "It's a DRAW!")
+        messagebox.showinfo(GAME_TITLE, MESSAGE_DRAW)
         disable_all_buttons()
 
 
@@ -174,12 +112,12 @@ def button_click(button):
         button["text"] = "X"
         clicked = False
         count += 1
-        check_if_won()
+        check_if_won(button["text"])
     elif button["text"] == " " and clicked is False:
         button["text"] = "O"
         clicked = True
         count += 1
-        check_if_won()
+        check_if_won(button["text"])
     else:
         button.config(bg="red")
         messagebox.showerror("Tic-Tac-Toe", "The box is already filled!\nPick another box!")
